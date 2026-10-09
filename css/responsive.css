@@ -1,0 +1,802 @@
+/*=========================================================
+   RESPONSIVE – Pequeña Magia
+   Se carga al final de todos los CSS para poder ajustarlos.
+   Breakpoints: 1100 (laptop chica) · 992 (tablet, menú
+   hamburguesa) · 768 (tablet vertical) · 480 (teléfono)
+=========================================================*/
+
+html{
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+}
+
+img{
+    max-width:100%;
+}
+
+/* El botón hamburguesa y el CTA del menú solo existen en móvil */
+.menu-toggle,
+.nav-cta-mobile{
+    display:none;
+}
+
+
+/* Evita que el botón del header se parta en dos líneas y choque con el menú */
+.btn-header{
+    white-space:nowrap;
+}
+
+@media (max-width:1400px){
+    nav ul{
+        gap:26px;
+    }
+    .btn-header{
+        padding:14px 22px;
+    }
+}
+
+
+/*=========================================================
+   LAPTOP CHICA
+=========================================================*/
+@media (max-width:1100px){
+
+    .header{
+        padding:18px 5%;
+    }
+
+    nav ul{
+        gap:24px;
+    }
+
+    .hero{
+        padding:150px 5% 80px;
+    }
+
+    .hero-texto h1 span{
+        font-size:72px;
+    }
+
+    .hero-imagen img{
+        width:380px;
+    }
+
+    .circulo{
+        width:390px;
+        height:390px;
+    }
+
+    .footer-contenedor{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+
+/*=========================================================
+   TABLET  (menú hamburguesa)
+=========================================================*/
+@media (max-width:992px){
+
+    /* ---------- HEADER ---------- */
+
+    .header{
+        padding:12px 5%;
+    }
+
+    .logo img{
+        width:90px;
+    }
+
+    .logo-texto h2{
+        font-size:24px;
+    }
+
+    .logo-texto p{
+        font-size:11px;
+        letter-spacing:0;
+    }
+
+    .btn-header{
+        display:none;
+    }
+
+    .menu-toggle{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        gap:6px;
+        width:48px;
+        height:48px;
+        padding:0;
+        border:none;
+        border-radius:50%;
+        background:var(--beige);
+        cursor:pointer;
+        -webkit-tap-highlight-color:transparent;
+    }
+
+    .menu-toggle span{
+        display:block;
+        width:22px;
+        height:2px;
+        border-radius:2px;
+        background:var(--vino);
+        transition:transform .3s, opacity .3s;
+    }
+
+    .header.nav-open .menu-toggle span:nth-child(1){
+        transform:translateY(8px) rotate(45deg);
+    }
+
+    .header.nav-open .menu-toggle span:nth-child(2){
+        opacity:0;
+    }
+
+    .header.nav-open .menu-toggle span:nth-child(3){
+        transform:translateY(-8px) rotate(-45deg);
+    }
+
+    /* Panel desplegable */
+    .header nav{
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        background:rgba(255,255,255,.98);
+        box-shadow:0 20px 30px rgba(74,32,42,.12);
+        border-radius:0 0 28px 28px;
+        padding:0 5%;
+        max-height:0;
+        overflow:hidden;
+        visibility:hidden;
+        opacity:0;
+        transition:max-height .4s ease, opacity .3s ease, padding .3s ease, visibility 0s .4s;
+    }
+
+    .header.nav-open nav{
+        max-height:90vh;
+        padding:8px 5% 24px;
+        visibility:visible;
+        opacity:1;
+        transition:max-height .4s ease, opacity .3s ease, padding .3s ease;
+    }
+
+    nav ul{
+        flex-direction:column;
+        gap:0;
+    }
+
+    nav ul li{
+        border-bottom:1px solid #F1DFDD;
+    }
+
+    nav ul li a{
+        display:block;
+        padding:16px 4px;
+        font-size:17px;
+    }
+
+    nav ul li a::after{
+        display:none;
+    }
+
+    nav ul li a.activo{
+        color:var(--rosa);
+        font-weight:600;
+    }
+
+    nav ul li.nav-cta-mobile{
+        display:block;
+        border-bottom:none;
+        padding-top:18px;
+    }
+
+    nav ul li.nav-cta-mobile a{
+        background:var(--vino);
+        color:#fff;
+        text-align:center;
+        border-radius:40px;
+        padding:15px 20px;
+    }
+
+    /* ---------- TIPOGRAFÍA ---------- */
+
+    h1{
+        font-size:clamp(34px,7vw,52px);
+        line-height:1.15;
+    }
+
+    h2{
+        font-size:clamp(28px,5.5vw,38px);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero{
+        flex-direction:column;
+        justify-content:flex-start;
+        text-align:center;
+        gap:50px;
+        min-height:auto;
+        padding:130px 6% 70px;
+    }
+
+    .hero-texto,
+    .hero-imagen{
+        width:100%;
+    }
+
+    .hero-texto p{
+        width:100%;
+        line-height:1.8;
+    }
+
+    .hero-botones,
+    .hero-info{
+        justify-content:center;
+    }
+
+    .hero-info{
+        gap:20px 30px;
+    }
+
+    /* ---------- SECCIONES ---------- */
+
+    .destacados,
+    .beneficios,
+    .testimonios,
+    .productos{
+        padding:80px 6%;
+    }
+
+    .titulo-seccion,
+    .titulo{
+        margin-bottom:45px;
+    }
+
+    .titulo-seccion p{
+        width:100%;
+    }
+
+    .contenedor-cards,
+    .contenedor-testimonios{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .beneficios-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .banner-personaliza{
+        flex-direction:column;
+        text-align:center;
+        gap:40px;
+        padding:70px 6%;
+        margin:70px 5%;
+        border-radius:40px;
+    }
+
+    .banner-texto{
+        width:100%;
+    }
+
+    .banner-imagen img{
+        width:260px;
+        margin:auto;
+        border-radius:25px;
+    }
+
+    /* ---------- BANNERS DE PÁGINAS INTERNAS ---------- */
+
+    .banner-nosotros,
+    .banner,
+    .banner-contacto,
+    .banner-galeria,
+    .banner-productos{
+        padding:140px 6% 70px;
+    }
+
+    .banner-nosotros h1,
+    .banner h1,
+    .banner-contacto h1,
+    .banner-galeria h1,
+    .banner-productos h1{
+        font-size:clamp(34px,7vw,48px);
+    }
+
+    .banner-nosotros p,
+    .banner p,
+    .banner-contacto p,
+    .banner-galeria p,
+    .banner-productos p{
+        font-size:16px;
+        line-height:1.7;
+    }
+
+    /* ---------- NOSOTROS ---------- */
+
+    .historia{
+        gap:40px;
+        margin:70px auto;
+    }
+
+    .historia-texto h2{
+        font-size:clamp(28px,5.5vw,38px);
+    }
+
+    .mision-vision{
+        margin:70px auto;
+        gap:25px;
+    }
+
+    .valores{
+        padding:80px 6%;
+    }
+
+    .valores h2{
+        font-size:clamp(28px,5.5vw,38px);
+        margin-bottom:40px;
+    }
+
+    /* ---------- PERSONALIZAR / CONTACTO ---------- */
+
+    .personalizar{
+        gap:40px;
+        margin:70px auto;
+    }
+
+    .personalizar .texto h2{
+        font-size:clamp(28px,5.5vw,38px);
+    }
+
+    .texto img{
+        margin:auto;
+    }
+
+    .contacto{
+        margin:60px auto;
+    }
+
+    .info,
+    .formulario{
+        padding:35px;
+    }
+
+    .titulo h2,
+    .productos .titulo h2{
+        font-size:clamp(28px,5.5vw,38px);
+    }
+}
+
+
+/*=========================================================
+   TABLET VERTICAL
+=========================================================*/
+@media (max-width:768px){
+
+    .hero-texto h1 span{
+        font-size:clamp(52px,13vw,72px);
+    }
+
+    .hero-imagen{
+        min-height:340px;
+    }
+
+    .hero-imagen img{
+        width:min(78%,330px);
+        border-radius:30px;
+    }
+
+    .circulo{
+        width:min(85vw,360px);
+        height:min(85vw,360px);
+    }
+
+    .hero::before{
+        width:320px;
+        height:320px;
+        top:-140px;
+        right:-120px;
+    }
+
+    .hero::after{
+        width:260px;
+        height:260px;
+        bottom:-120px;
+        left:-100px;
+    }
+
+    .wave svg{
+        height:70px;
+        width:100%;
+    }
+
+    .footer-contenedor{
+        text-align:center;
+    }
+
+    .footer-redes a{
+        margin:0 5px;
+    }
+}
+
+
+/*=========================================================
+   TELÉFONO
+=========================================================*/
+@media (max-width:600px){
+
+    /* Una sola columna */
+    .contenedor-cards,
+    .contenedor-testimonios,
+    .beneficios-grid,
+    .footer-contenedor,
+    .contenedor-valores{
+        grid-template-columns:1fr;
+    }
+
+    .contenedor-cards,
+    .contenedor-testimonios,
+    .beneficios-grid{
+        gap:25px;
+    }
+
+    .destacados,
+    .beneficios,
+    .testimonios,
+    .productos{
+        padding:60px 5%;
+    }
+
+    /* Tarjetas de la home: quitar el relleno que viene de nosotros.css */
+    .destacados .card{
+        padding:0;
+    }
+
+    .card img{
+        height:230px;
+    }
+
+    .contenido-card{
+        padding:24px;
+    }
+
+    .contenido-card h3{
+        font-size:22px;
+    }
+
+    .beneficio{
+        padding:32px 24px;
+    }
+
+    .testimonio{
+        padding:32px 24px;
+    }
+
+    /* Hero */
+    .hero{
+        padding:125px 5% 60px;
+        gap:40px;
+    }
+
+    .etiqueta{
+        font-size:13px;
+        padding:8px 16px;
+        margin-bottom:18px;
+    }
+
+    .hero-texto p{
+        font-size:15px;
+        margin-bottom:28px;
+    }
+
+    .hero-botones{
+        flex-direction:column;
+        gap:14px;
+        margin-bottom:35px;
+    }
+
+    .hero-botones a,
+    .banner-texto .btn-principal{
+        width:100%;
+        text-align:center;
+        margin:0;
+        padding:16px 24px;
+    }
+
+    .btn-secundario{
+        margin-left:0;
+    }
+
+    .hero-info{
+        flex-direction:column;
+        align-items:center;
+        gap:12px;
+    }
+
+    .hero-info div{
+        font-size:15px;
+    }
+
+    /* Títulos de sección */
+    .titulo-seccion span,
+    .titulo span{
+        font-size:28px;
+    }
+
+    .titulo-seccion h2{
+        font-size:28px;
+    }
+
+    .titulo-seccion p,
+    .titulo p{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    /* Banner de llamado a la acción */
+    .banner-personaliza{
+        margin:50px 5%;
+        padding:50px 24px;
+        border-radius:32px;
+        gap:30px;
+    }
+
+    .banner-texto h2{
+        font-size:28px;
+    }
+
+    .banner-imagen img{
+        width:min(100%,260px);
+    }
+
+    /* Footer */
+    footer{
+        padding:50px 6% 25px;
+    }
+
+    .footer-contenedor{
+        gap:32px;
+    }
+
+    .footer-logo img{
+        width:130px;
+        margin:0 auto 10px;
+    }
+
+    .copyright{
+        margin-top:35px;
+        padding-top:22px;
+        font-size:13px;
+        line-height:1.6;
+    }
+
+    /* Banners internos */
+    .banner-nosotros,
+    .banner,
+    .banner-contacto,
+    .banner-galeria,
+    .banner-productos{
+        padding:115px 5% 55px;
+    }
+
+    .banner-nosotros h1,
+    .banner h1,
+    .banner-contacto h1,
+    .banner-galeria h1,
+    .banner-productos h1{
+        font-size:clamp(30px,9vw,38px);
+        line-height:1.2;
+    }
+
+    /* Productos */
+    .cards-productos{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .card h3{
+        font-size:22px;
+        margin:22px 22px 12px;
+    }
+
+    .card p{
+        margin:0 22px 22px;
+    }
+
+    .card a{
+        margin:0 22px 26px;
+    }
+
+    .destacados .card h3{
+        margin:8px 0 10px;
+    }
+
+    .destacados .card p{
+        margin:0;
+    }
+
+    .destacados .card a.btn-card{
+        margin:16px 0 0;
+        padding:12px 30px;
+    }
+
+    /* Galería */
+    .galeria{
+        grid-template-columns:1fr;
+        gap:22px;
+        margin:50px auto;
+    }
+
+    .foto{
+        padding:12px;
+        border-radius:22px;
+    }
+
+    .foto img{
+        height:300px;
+    }
+
+    /* Nosotros */
+    .historia{
+        margin:50px auto;
+        gap:30px;
+    }
+
+    .historia-img img{
+        width:220px;
+        height:220px;
+    }
+
+    .historia-texto span{
+        font-size:32px;
+    }
+
+    .historia-texto h2{
+        font-size:28px;
+        margin:12px 0 18px;
+    }
+
+    .historia-texto p{
+        font-size:15px;
+        line-height:1.8;
+    }
+
+    .mision-vision{
+        margin:50px auto;
+    }
+
+    .card h2{
+        font-size:28px;
+    }
+
+    .mision-vision .card{
+        padding:30px 24px;
+    }
+
+    .valores{
+        padding:60px 5%;
+    }
+
+    .valores h2{
+        font-size:28px;
+        margin-bottom:30px;
+    }
+
+    .valor{
+        padding:28px 22px;
+    }
+
+    .valor h3{
+        font-size:22px;
+    }
+
+    /* Formularios (16px evita el zoom automático en iPhone) */
+    .personalizar,
+    .contacto{
+        width:90%;
+        margin:45px auto;
+        gap:30px;
+    }
+
+    .personalizar .texto span{
+        font-size:32px;
+    }
+
+    .personalizar .texto h2{
+        font-size:28px;
+        margin:10px 0 18px;
+    }
+
+    .info,
+    .formulario{
+        padding:28px 22px;
+        border-radius:26px;
+    }
+
+    .info h2{
+        font-size:28px;
+        margin-bottom:20px;
+    }
+
+    .info p{
+        font-size:15px;
+        line-height:1.7;
+        margin-bottom:14px;
+        overflow-wrap:anywhere;
+    }
+
+    .formulario input,
+    .formulario select,
+    .formulario textarea{
+        font-size:16px;
+        padding:14px;
+    }
+
+    .formulario textarea{
+        height:140px;
+    }
+
+    .formulario button{
+        padding:16px;
+        font-size:16px;
+    }
+
+    /* Gracias */
+    .gracias{
+        height:auto;
+        min-height:100vh;
+        padding:30px 5%;
+    }
+
+    .contenido{
+        width:100%;
+        padding:40px 24px;
+        border-radius:28px;
+    }
+
+    .contenido img{
+        width:100px;
+    }
+
+    .contenido h1{
+        font-size:28px;
+        line-height:1.25;
+    }
+
+    .contenido a{
+        padding:14px 34px;
+    }
+}
+
+
+/*=========================================================
+   TELÉFONOS MUY CHICOS (≤ 360px)
+=========================================================*/
+@media (max-width:360px){
+
+    .logo img{
+        width:72px;
+    }
+
+    .logo a{
+        gap:8px;
+    }
+
+    .logo-texto h2{
+        font-size:20px;
+    }
+
+    .logo-texto p{
+        display:none;
+    }
+
+    .hero-texto h1{
+        font-size:30px;
+    }
+
+    .hero-texto h1 span{
+        font-size:50px;
+    }
+}
